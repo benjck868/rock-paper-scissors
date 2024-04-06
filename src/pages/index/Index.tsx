@@ -1,32 +1,17 @@
+import { Link } from "react-router-dom"
 
 export default function Index() {
     localStorage.clear()
   return (
     <>
-      <main className="h-screen grid grid-cols-12 grid-rows-12">
-        <header className="col-span-12 border border-red-500">
-          hhh
-        </header>
-        <div className="col-span-12 row-start-2 row-span-10 border border-blue-500">
-          <button className="choice-btn" data-choice="paper">
-            <div className="choice paper">
-              <img src="./images/icon-paper.svg" alt="paper" />
-            </div>
-          </button>
-          <button className="choice-btn" data-choice="scissors">
-            <div className="choice scissors">
-              <img src="./images/icon-scissors.svg" alt="scissors" />
-            </div>
-          </button>
-          <button className="choice-btn" data-choice="rock">
-            <div className="choice rock">
-              <img src="./images/icon-rock.svg" alt="rock" />
-            </div>
-          </button>
+      <main className="grid place-items-center h-screen bg-[url('/images/rock-paper-scissors.jpg')] bg-cover bg-center fl">
+        <div className="flex flex-col">
+          <div className="text-RPS-dark-text text-5xl">Game Mode</div>
+          <div className="flex flex-col mt-10 gap-5"> 
+            <Link className="text-RPS-radial-gradient-to py-3 text-3xl border border-gray-950 text-center rounded-xl bg-slate-500" to="/game">Basic</Link>
+            <Link className="text-RPS-radial-gradient-to py-3 text-3xl border border-gray-950 text-center rounded-xl bg-slate-500" to="/game/advance">Advanced</Link>
+          </div>
         </div>
-        <footer className="col-span-12 border border-pink-500">
-          fff
-        </footer>
       </main>
     </>  )
 }
