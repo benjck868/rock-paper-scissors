@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+ 
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+ 
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+ 
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+ 
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+ 
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+ 
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+ 
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+ 
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+ 
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+ 
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+ 
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+ 
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+ 
+@layer base {
+  :root {
+    /**Primary**/
+    --scissors-1 : hsl(39, 89%, 49%);
+    --scissors-2 : hsl(40, 84%, 53%);
+    --Paper-1 : hsl(230, 89%, 62%);
+    --paper-2 : hsl(230, 89%, 65%);
+    --rock-1 : hsl(349, 71%, 52%);
+    --rock-2 : hsl(349, 70%, 56%);
+    --lizard-1 : hsl(261, 73%, 60%);
+    --lizard-2 : hsl(261, 72%, 63%);
+    --spock-1: hsl(189, 59%, 53%) ;
+    --spock-2 : hsl(189, 58%, 57%);
+
+    /**Neutral**/
+
+    --dark-text: hsl(229, 25%, 31%);
+    --score-text: hsl(229, 64%, 46%);
+    --header-outline: hsl(217, 16%, 45%);
+
+    /**Background**/
+
+    --background-1 : hsl(214, 47%, 23%); 
+    --background-2 : hsl(237, 49%, 15%);
+    --shadow-light: hsla(0, 0%, 0%, 0.149);
+    --shadow-med: hsla(0, 0%, 0%, 0.302);
+  }
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Barlow Semi Condensed", sans-serif;
+    /*
+    * Created with https://www.css-gradient.com
+    * Gradient link: https://www.css-gradient.com/?c1=203757&c2=141639&gt=r&gd=dtt
+    */
+    background: #203757;
+    background: radial-gradient(at center top, #203757, #141639);
+  }
+  .game {
+    position : relative;
+    padding: 0px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-auto-rows: minmax(auto, auto);
+    grid-template-areas: 
+      "paper scissors"
+      "rock rock";
+    place-items: center;
+    height: 30rem;
+  }
+  .game::before{
+    content: " ";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: url("/images/bg-triangle.svg") no-repeat center;
+    z-index: -1;
+  }
+  .paper {
+    grid-area: paper;
+  }
+  .scissors {
+    grid-area: scissors;
+  }
+  .rock {
+    grid-area: rock;
+  }
+
+  .choice {
+    position: relative;
+    background: #fff;
+    display: grid;
+    place-items: center;
+    box-shadow: inset 0 0.5rem var(--shadow-light);
+  }
+  .choice::before {
+    content: " ";
+    position: absolute;
+    left: -15%;
+    right: -15%;
+    width: 130%;
+    height: 130%;
+    border-radius: 50%;
+  }
+  .choice.paper::before {
+    background: linear-gradient(to bottom, var(--Paper-1), var(--paper-2));
+    box-shadow: 0 0.5rem var(--shadow-med), 0 0.5rem var(--paper-2);
+    z-index: -1;
+  }
+
+  .choice.scissors::before {
+    background: linear-gradient(to bottom, var(--scissors-1), var(--scissors-2));
+    box-shadow: 0 0.5rem var(--shadow-med), 0 0.5rem var(--scissors-2);
+    z-index: -1;    
+  }
+
+  .choice.rock::before {
+    background: linear-gradient(to bottom, var(--rock-1), var(--rock-2));
+    box-shadow: 0 0.5rem var(--shadow-med), 0 0.5rem var(--rock-2);
+    z-index: -1;
+  }
+  .choice.spock::before {
+    background: linear-gradient(to bottom, var(--spock-1), var(--spock-2));
+    box-shadow: 0 0.5rem var(--shadow-med), 0 0.5rem var(--spock-2);
+    z-index: -1;
+  }
+  .choice.lizard::before {
+    background: linear-gradient(to bottom, var(--lizard-1), var(--lizard-2));
+    box-shadow: 0 0.5rem var(--shadow-med), 0 0.5rem var(--lizard-2);
+    z-index: -1;
+  }
+
+  .winner::after{
+    content: "";
+    position: absolute;
+    height: 130%;
+    width: 130%;
+    border-radius: 50%;
+    z-index: -2;
+    box-shadow:
+      0 0 0 40px #293251,
+      0 0 0 90px #232c4b,
+      0 0 0 150px #1e2949;
+  }
+
+  /** game advance layout**/
+    .game-advance{
+    position : relative;
+    padding: 0px;
+    display: grid;
+    grid-template-columns: repeat(1fr,2);
+    grid-template-areas: 
+      "scissors scissors"
+      "spock paper"
+      "lizard rock";
+    place-items: center;
+    height: 30rem;
+  }
+  .game-advance::before{
+    content: " ";
+    height: 100%;
+    width: 100%;
+    margin: auto auto;
+    position: absolute;
+    background: url("/images/bg-pentagon.svg") no-repeat center;
+    z-index: -1;
+  }
+}
